@@ -1,0 +1,24 @@
+{% extends 'core/index.html.twig' %}
+
+
+{% block studies %}
+
+    {{ dump() }}
+
+{% endblock %}
+
+
+
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+
+        //**************
+        // See about Jquery
+
+        var id = '{{ id }}';
+        var element = document.getElementById("_" + id);
+        element.classList.add("sel-1");
+    </script>
+{% endblock %}

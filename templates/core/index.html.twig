@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}pan::map{% endblock %}
+
+{% block body %}
+
+    <div class="row align-items-center">
+
+        <div class="col-sm-4">
+            {{ source('core/svg/depts.svg') }}
+        </div>
+
+        <div class="col-sm-6">
+            {% block studies %}{% endblock %}
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

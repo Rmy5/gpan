@@ -1,0 +1,37 @@
+{% extends 'core/index.html.twig' %}
+
+{% block studies %}
+
+    <div class="list-group-item disabled bg-orange text-dark font-italic font-weight-bold">
+        <h5>OVNIS recensés en {{ studies[2].nomDepartement }} :</h5></div>
+
+    <div class="ul-wrap">
+        <ul class="list-group list-group-flush">
+
+            {% for el in studies %}
+
+                <li class="list-group-item list-group-item-action " data-abstract="{{ el.resumeLong }}">
+                    <p class="d-inline-block">{{ el.nom }}</p> - <p class="d-inline-block">{{ el.resumeCourt }}</p>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        //**************
+        // See about Jquery
+
+        let id = '{{ id }}';
+        let element = document.getElementById("_" + id);
+        element.classList.add("sel-1");
+    </script>
+
+{% endblock %}
+

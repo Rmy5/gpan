@@ -6,17 +6,17 @@
         <h5>OVNIS recensés en {{ studies[2].nomDepartement }} :</h5></div>
 
     <div class="ul-wrap">
-        <ul class="list-group list-group-flush">
+        <div class="list-group list-group-flush">
 
             {% for el in studies %}
 
-                <li class="list-group-item list-group-item-action " data-abstract="{{ el.resumeLong }}">
+                <a href="{{ path('get_case', { dept: el.departement, id: el.id }) }}" class="list-group-item list-group-item-action ">
                     <p class="d-inline-block">{{ el.nom }}</p> - <p class="d-inline-block">{{ el.resumeCourt }}</p>
-                </li>
+                </a>
 
             {% endfor %}
 
-        </ul>
+        </div>
     </div>
 
 {% endblock %}

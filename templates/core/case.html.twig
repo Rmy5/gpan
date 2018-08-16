@@ -3,7 +3,16 @@
 
 {% block studies %}
 
-    {{ dump() }}
+    <div class="list-group-item disabled bg-orange text-dark font-italic font-weight-bold">
+
+        {{ case.etude.nom }} - {{ case.etude.resumeCourt }}
+
+    </div>
+    <div class="list-group-item">
+
+        {{ case.etude.resumeLong }}
+
+    </div>
 
 {% endblock %}
 

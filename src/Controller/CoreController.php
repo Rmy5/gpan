@@ -35,20 +35,22 @@ class CoreController extends AbstractController
     /**
      * @Route("/get/case/{dept}/{id}", name="get_case")
      */
-    public function getCase($id, $dept)
+    public function getCase($dept, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $case= $em->getRepository('App:Temoignage')->find($id);
+        $case = $em->getRepository('App:Etude')->find( $id );
 
-        return $this->render('core/case.html.twig', ['case' => $case, 'id' => $dept]);
+        $prevAndNext = $em->getRepository('App:Etude')
+                          ->getPrevAndNext($dept, $id);
+
+        return $this->render('core/case.html.twig',
+            [
+                'case' => $case,
+                'id' => $dept,
+                'previd' => $prevAndNext['prev_value'],
+                'nextid' => $prevAndNext['next_value']
+            ]);
     }
 
-    /**
-     * @Route("/test/{id}", name="test")
-     */
-    public function test($id)
-    {
-        return $this->render('core/test.html.twig', ['id' => $id]);
-    }
 }

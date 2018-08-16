@@ -27,22 +27,28 @@ class EtudeRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.departement = :id')
             ->setParameter('id', $id)
-            ->orderBy('e.categoriePAN', 'DESC')
+            ->orderBy('e.id', 'DESC')
             ->getQuery()
             ->getArrayResult()
         ;
     }
 
-
-    /*
-    public function findOneBySomeField($value): ?Etude
+    public function getPrevAndNext($dept, $etudeId)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $conn = $this->getEntityManager()
+                     ->getConnection();
+
+        $sql = "SELECT id,
+                  (SELECT id FROM etude e1 WHERE e1.id < e.id AND departement = :dept ORDER BY id DESC LIMIT 1 OFFSET 0) as next_value,
+                  (SELECT id FROM etude e2 WHERE e2.id > e.id AND departement = :dept ORDER BY id ASC LIMIT 1 OFFSET 0) as prev_value
+                FROM etude e
+                WHERE id = :etudeId AND departement = :dept";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->execute(array(':dept' => $dept, ':etudeId' => $etudeId));
+
+        return $stmt->fetch();
     }
-    */
+
 }

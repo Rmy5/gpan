@@ -3,15 +3,25 @@
 
 {% block studies %}
 
-    <div class="list-group-item disabled bg-orange text-dark font-italic font-weight-bold">
 
-        {{ case.etude.nom }} - {{ case.etude.resumeCourt }}
+
+    <div class="list-group-item disabled bg-orange text-dark font-italic font-weight-bold">
+        {{ case.nom }} - {{ case.resumeCourt }}
 
     </div>
     <div class="list-group-item">
+        {{ case.resumeLong | raw}}
+    </div>
+    <div class="list-group-item bg-light">
+        <a href="{{ path('get_studies', { id: id }) }}" class="btn btn-outline-secondary btn-sm">Retour</a>
 
-        {{ case.etude.resumeLong }}
+        {% if previd != "" %}
+            <a href="{{ path('get_case', { dept: id, id: previd }) }}" class="btn btn-outline-secondary btn-sm">Précédent</a>
+        {% endif %}
 
+        {% if nextid != "" %}
+        <a href="{{ path('get_case', { dept: id, id: nextid }) }}" class="btn btn-outline-secondary btn-sm">Suivant</a>
+        {% endif %}
     </div>
 
 {% endblock %}

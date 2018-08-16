@@ -11,7 +11,8 @@
             {% for el in studies %}
 
                 <a href="{{ path('get_case', { dept: el.departement, id: el.id }) }}" class="list-group-item list-group-item-action ">
-                    <p class="d-inline-block">{{ el.nom }}</p> - <p class="d-inline-block">{{ el.resumeCourt }}</p>
+                    <p class="badge badge-secondary badge-pill mr-3">{{ el.categoriePAN }}</p>
+                    <p class="d-inline-block align-top w-25 mr-2">{{ el.nom }}</p> <p class="d-inline-block w-65 align-top"> {{ el.resumeCourt }}</p>
                 </a>
 
             {% endfor %}
